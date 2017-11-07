@@ -1,6 +1,12 @@
 <?php
 
     $config = require '../config/web.php';
-    
-    echo '<pre>';
-    var_dump($config);
+
+    require_once('../core/Shop.php');
+
+    Shop::run($config);
+
+    var_dump(
+        Shop::$app->db
+    );
+    // Shop::getOption('db')

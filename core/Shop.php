@@ -5,6 +5,7 @@ class Shop
     public static $app;
 
     public $config;
+    public $db;
 
     public static function run($config) 
     {
@@ -22,8 +23,19 @@ class Shop
 
     public function connect()
     {   
-        echo $this->config['db']['host'];
-        echo '::connect';
-    }
+        $connectionString = 'mysql:host=' . $this->config['database']['host'] 
+        . ';dbname=' . $this->config['database']['dbname'] 
+        . ';charset=' . $this->config['database']['charset'];
 
+        try {
+            $this->db = new PDO(
+                $connectionString, 
+                $this->config['database']['username'], 
+                $this->config['database']['password']
+            );
+        } catch (PDOException $e) {
+            echo 'Error: ' . $e->getMessage();
+            die();
+        }
+    }
 }

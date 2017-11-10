@@ -9,4 +9,6 @@
     var_dump(
         Shop::$app->db
     );
-    // Shop::getOption('db')
+    
+
+    echo 'кодировка';

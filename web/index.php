@@ -11,6 +11,17 @@
         die();
     }
 
+    define('BASE_PATH', realpath(__DIR__ . DIRECTORY_SEPARATOR . '..'));
+
+    function shop_autoload($name)
+    {
+        $path = BASE_PATH . DIRECTORY_SEPARATOR . $name . '.php';
+        if (file_exists($path))
+            include($path);
+        // dd($path);
+    }
+    spl_autoload_register('shop_autoload');
+
     $config = require '../config/web.php';
 
     require_once('../core/Shop.php');

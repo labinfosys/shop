@@ -1,17 +1,14 @@
 <?php
 
-require_once '../models/Product.php';
+use \models\Product;
+// require_once '../models/Product.php';
 
 class ProductController
 {
     public function actionView($id)
     {
         $prod = Product::getById($id);
-        var_dump($prod);
-        // include('product/view');
-        // return $this->render('product/view', [
-        //     'product' => $prod
-        // ]);
+        d($prod);
     }
 
     public function actionIndex()

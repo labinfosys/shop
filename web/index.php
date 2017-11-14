@@ -1,4 +1,15 @@
 <?php
+    function d($variable) 
+    {
+        echo '<pre>';
+        var_dump($variable);
+        echo '</pre>';
+    }
+    function dd($variable) 
+    {
+        d($variable);
+        die();
+    }
 
     $config = require '../config/web.php';
 
@@ -6,9 +17,6 @@
 
     Shop::run($config);
 
-    var_dump(
-        Shop::$app->db
+    d(
+        Shop::$app
     );
-    
-
-    echo 'кодировка';

@@ -42,7 +42,11 @@ class Shop
 
         $controller = new $controllerName();
         // $controller = new ProductController();
-        $controller->$actionName($_GET['id']);
+        $params = $_GET;
+        unset($params['r']);
+        // var_dump($params);
+        call_user_func_array([$controller, $actionName], $params);
+        //$controller->$actionName($_GET['id']);
         // $controller->actionView(10);
     }
 

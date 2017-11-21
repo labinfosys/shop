@@ -13,6 +13,11 @@ class ProductController
 
     public function actionIndex()
     {
-        echo 'все товары';
+        if (isset($_POST['Product']))
+            $products = Product::all($_POST['Product']);
+        else
+            $products = Product::all();
+        include '../views/products/index.php';
+        // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';
     }
 }

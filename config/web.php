@@ -2,9 +2,9 @@
     return [
         'database' => [
             'host' => 'localhost',
-            'dbname'   => 'shop',
-            'username' => 'shop',
-            'password' => 'shop',
+            'dbname'   => 'phpshop',
+            'username' => 'root',
+            'password' => '',
             'charset'  => 'utf8',
         ],
     ];

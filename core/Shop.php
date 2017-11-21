@@ -1,5 +1,7 @@
 <?php
 
+namespace core;
+
 class Shop 
 {
     public static $app;
@@ -57,7 +59,7 @@ class Shop
         . ';charset=' . $this->config['database']['charset'];
 
         try {
-            $this->db = new PDO(
+            $this->db = new \PDO(
                 $connectionString, 
                 $this->config['database']['username'], 
                 $this->config['database']['password']

@@ -2,11 +2,11 @@
 
 namespace models;
 
+use \core\Shop;
+
 class Product 
 {
-    public $id;
-    public $name;
-    public $price;
+    public $attributes;
 
     public static function getById($id)
     {
@@ -17,17 +17,27 @@ class Product
         return $product;
     }
 
-    public static function find()
+    public function __get($name)
     {
-        // ... загрузка из БД
+        if (isset($this->attributes[$name]))
+            return $this->attributes[$name];
+        return null;
+    }
+
+    public static function all($filter = [])
+    {
+        $sql = 'select * from product where 1=1 ';
+        if (count($filter) > 0) {
+            foreach($filter as $key => $value) {
+                $sql = $sql . ' and ' . $key . ' like \'%' . $value . '%\'';
+            }
+        }
         $result = [];
-        /*
-        while (....) {
+        foreach (Shop::$app->db->query($sql) as $row) {
             $product = new Product();
-            // ... заполнение свойств
+            $product->attributes = $row;
             $result[] = $product;
         }
-        */
         return $result;
     }
 }

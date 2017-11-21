@@ -26,8 +26,8 @@
 
     require_once('../core/Shop.php');
 
-    Shop::run($config);
+    \core\Shop::run($config);
 
-    d(
-        Shop::$app
-    );
+    // d(
+    //     Shop::$app
+    // );

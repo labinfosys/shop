@@ -18,7 +18,6 @@
         $path = BASE_PATH . DIRECTORY_SEPARATOR . $name . '.php';
         if (file_exists($path))
             include($path);
-        // dd($path);
     }
     spl_autoload_register('shop_autoload');
 
@@ -27,7 +26,3 @@
     require_once('../core/Shop.php');
 
     \core\Shop::run($config);
-
-    // d(
-    //     Shop::$app
-    // );

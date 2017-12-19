@@ -1,6 +1,6 @@
 <h1>Все товары</h1>
 
-<form action="/?r=product/index" method="POST">
+<form action="" method="POST">
     <label>Название:
         <input type="text" name="Product[name]">
     </label>

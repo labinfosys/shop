@@ -18,38 +18,9 @@ class Shop
             // Подключение к БД
             self::$app->connect();
             // Инициализация маршрутизатора
-            self::$app->route();
+            Router::route();
         }
         return self::$app;
-    }
-
-    public function route()
-    {
-        $route = explode('/', $_GET['r']);
-
-        if (!isset($route[0]) || $route[0] == '') {
-            $route[0] = 'default';
-        }
-        $controllerName = ucfirst($route[0]) . 'Controller';
-        if (!isset($route[1])) {
-            $route[1] = 'index';
-        }   
-        $actionName = 'action' . ucfirst($route[1]);
-        $actionParams = [];
-
-        $controllerPath = '../controllers/' . $controllerName . '.php';
-        if (file_exists($controllerPath)) {
-            include_once $controllerPath;
-        }
-
-        $controller = new $controllerName();
-        // $controller = new ProductController();
-        $params = $_GET;
-        unset($params['r']);
-        // var_dump($params);
-        call_user_func_array([$controller, $actionName], $params);
-        //$controller->$actionName($_GET['id']);
-        // $controller->actionView(10);
     }
 
     public function connect()

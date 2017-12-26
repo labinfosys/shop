@@ -23,6 +23,6 @@
 
     $config = require '../config/web.php';
 
-    require_once('../core/Shop.php');
+    // require_once('../core/Shop.php');
 
     \core\Shop::run($config);

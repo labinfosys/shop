@@ -10,10 +10,12 @@ class Product
 
     public static function getById($id)
     {
-        // ... загрузка из БД
         $product = new Product();
-        $product->id = $id;
-        // ... заполнение свойств
+        $sql = 'select * from product where id = ' . $id;
+        $result = Shop::$app->db->query($sql);
+        $row = $result->fetch(\PDO::FETCH_ASSOC);
+        if ($row === false) return null;
+        $product->attributes = $row;
         return $product;
     }
 

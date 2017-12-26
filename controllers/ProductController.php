@@ -7,8 +7,12 @@ class ProductController
 {
     public function actionView($id)
     {
-        $prod = Product::getById($id);
-        d($prod);
+        $product = Product::getById($id);
+        if (is_null($product)) {
+            echo "Продукт с id = $id не найден";
+            return;
+        }
+        include '../views/products/view.php';
     }
 
     public function actionIndex()

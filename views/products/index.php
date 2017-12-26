@@ -2,11 +2,30 @@
 
 <form action="" method="POST">
     <label>Название:
-        <input type="text" name="Product[name]">
+        <?php $value = isset($_POST['Product']['name']) ? $_POST['Product']['name'] : '' ?>
+        <input type="text" name="Product[name]" value="<?= $value ?>">
     </label>
-    <label>Бренд:
-        <input type="text" name="Product[brand]">
-    </label>
+    <div>Бренд:
+        <ul>
+            <?php foreach($brands as $brand) : ?>
+                <li>
+                    <?php 
+                        $checked = '';
+                        if (isset($_POST['Product']['brand']) && array_search($brand->name, $_POST['Product']['brand']) !== false) {
+                            $checked = ' checked';
+                        }
+                    ?>
+                    <label><input 
+                                type="checkbox" 
+                                name="Product[brand][]" 
+                                value="<?= $brand->name ?>"<?= $checked ?>>
+                        <?= $brand->name ?>
+                    </label>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <!-- <input type="text" name="Product[brand]"> -->
+    </div>
     <input type="submit">
 </form>
 

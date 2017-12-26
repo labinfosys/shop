@@ -1,7 +1,7 @@
 <?php
 
 use \models\Product;
-// require_once '../models/Product.php';
+use \models\Brand;
 
 class ProductController
 {
@@ -21,6 +21,8 @@ class ProductController
             $products = Product::all($_POST['Product']);
         else
             $products = Product::all();
+
+        $brands = Brand::all();
         include '../views/products/index.php';
         // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';
     }

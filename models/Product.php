@@ -31,7 +31,10 @@ class Product
         $sql = 'select * from product where 1=1 ';
         if (count($filter) > 0) {
             foreach($filter as $key => $value) {
-                $sql = $sql . ' and ' . $key . ' like \'%' . $value . '%\'';
+                if (is_array($value))
+                    $sql .= ' and ' . $key . ' in (\'' . implode('\', \'', $value) . '\')';
+                else
+                    $sql .= ' and ' . $key . ' like \'%' . $value . '%\'';
             }
         }
         $result = [];

@@ -45,4 +45,22 @@ class Product
         }
         return $result;
     }
+
+    public static function byPage($page = 1)
+    {
+        $pageSize = 5;
+        $products = self::all();
+        $total = count($products);
+        $result = [];
+        $from = ($page - 1) * $pageSize;
+        $to   = $from + $pageSize;
+        if ($to > $total) $to = $total;
+        for ($i = $from; $i < $to; $i++) {
+            $result[] = $products[$i];
+        }
+        return [
+            'products' => $result,
+            'pages'    => ceil($total / $pageSize)
+        ];
+    }
 }

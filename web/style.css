@@ -1,0 +1,11 @@
+.pagination a, .pagination .current {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid red;
+}
+
+.pagination .current {
+    background: orange;
+    border: 1px solid black;
+}

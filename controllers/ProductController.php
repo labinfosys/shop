@@ -26,4 +26,13 @@ class ProductController
         include '../views/products/index.php';
         // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';
     }
+
+    public function actionPagination()
+    {
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $result = Product::byPage($page);
+        $products = $result['products'];
+        $pageCount = $result['pages'];
+        include '../views/products/by-page.php';
+    }
 }

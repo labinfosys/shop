@@ -3,27 +3,23 @@
 namespace models;
 
 use \core\Shop;
+use \core\Model;
 
-class Product 
+class Product extends Model
 {
-    public $attributes;
+
+    public $tableName = 'product';
+    public static $className = 'Product';
 
     public static function getById($id)
     {
-        $product = new Product();
-        $sql = 'select * from product where id = ' . $id;
+        $model = new Product();
+        $sql = 'select * from ' . $model->tableName . ' where id = ' . $id;
         $result = Shop::$app->db->query($sql);
         $row = $result->fetch(\PDO::FETCH_ASSOC);
         if ($row === false) return null;
-        $product->attributes = $row;
-        return $product;
-    }
-
-    public function __get($name)
-    {
-        if (isset($this->attributes[$name]))
-            return $this->attributes[$name];
-        return null;
+        $model->attributes = $row;
+        return $model;
     }
 
     public static function all($filter = [])
@@ -62,5 +58,11 @@ class Product
             'products' => $result,
             'pages'    => ceil($total / $pageSize)
         ];
+    }
+
+    public function save()
+    {
+        // create product
+        
     }
 }

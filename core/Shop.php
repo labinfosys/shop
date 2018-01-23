@@ -16,28 +16,11 @@ class Shop
             // Загрузка конфигурации
             self::$app->config = $config;
             // Подключение к БД
-            self::$app->connect();
+            self::$app->db = Db::connect();
             // Инициализация маршрутизатора
             Router::route();
         }
         return self::$app;
     }
 
-    public function connect()
-    {   
-        $connectionString = 'mysql:host=' . $this->config['database']['host'] 
-        . ';dbname=' . $this->config['database']['dbname'] 
-        . ';charset=' . $this->config['database']['charset'];
-
-        try {
-            $this->db = new \PDO(
-                $connectionString, 
-                $this->config['database']['username'], 
-                $this->config['database']['password']
-            );
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
-            die();
-        }
-    }
 }

@@ -20,4 +20,14 @@ class ProductController
         }
         include '../views/products/edit.php';
     }
+
+    public function actionNew()
+    {
+        if (isset($_POST['Product'])) {
+            $product = new Product;
+            $product->attributes = $_POST['Product'];
+            $product->save();
+        }
+        include '../views/products/new.php';
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace models;
+namespace common\models;
 
 use \core\Shop;
 

@@ -1,7 +1,7 @@
 <?php
 
-use \models\Product;
-use \models\Brand;
+use \common\models\Product;
+use \common\models\Brand;
 
 class ProductController
 {

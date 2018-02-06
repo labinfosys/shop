@@ -62,7 +62,24 @@ class Product extends Model
 
     public function save()
     {
-        // create product
-        
+        if (isset($this->attributes['id'])) {
+            // update product   
+            $sql = 'update ' . $this->tableName . ' set '
+                . '`name` = \'' . $this->name . '\', '
+                . '`category_id` = ' . $this->category_id . ', '
+                . '`code` = ' . $this->code . ', '
+                . '`price` = ' . $this->price . ', '
+                . '`availability` = ' . $this->availability . ', '
+                . '`brand` = \'' . $this->brand . '\', '
+                . '`description` = \'' . $this->description . '\', '
+                . '`is_new` = ' . $this->is_new . ', '
+                . '`is_recommended` = ' . $this->is_recommended . ', '
+                . '`status` = ' . $this->status . ''
+                . ' where id = ' . $this->id;
+            $result = Shop::$app->db->query($sql);
+            return $result !== false;
+        } else {
+            // insert product
+        }
     }
 }

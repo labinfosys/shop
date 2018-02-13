@@ -80,22 +80,23 @@ class Product extends Model
             return $result !== false;
         } else {
             // insert product
-			if(!empty($_POST['Product'])){
-                $name = 'Product["name"]';
-                $category_id = 'Product["Category_id"]';
-                $code = 'Product["code"]';
-                $price = 'Product["price"]';
-                $availability = 'Product["availability"]';
-                $brand = 'Product["brand"]';
-			}
             $sql = "INSERT INTO {$this->tableName}( name, category_id, 
 			code, price , availability, brand) VALUES ('{$this->name}', '{$this->category_id}',
 			'{$this->code}', '{$this->price}',
 			'{$this->availability}', '{$this->brand}')";
-                
                
             $result = Shop::$app->db->query($sql);
             return $result !== false;
         }
+    }
+
+    public function delete()
+    {
+        if (isset($this->attributes['id'])) {            
+            $sql = "DELETE FROM {$this->tableName} WHERE id = {$this->id}";
+            $result = Shop::$app->db->query($sql);
+            return $result !== false;   
+        }
+        return false;
     }
 }

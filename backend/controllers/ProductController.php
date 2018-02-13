@@ -15,7 +15,6 @@ class ProductController
 
         if (isset($_POST['Product'])) {
             $product->attributes = array_merge($product->attributes, $_POST['Product']);
-            // var_dump($product->attributes);
             $product->save();
         }
         include '../views/products/edit.php';
@@ -23,10 +22,11 @@ class ProductController
 
     public function actionNew()
     {
+        $created = false;
         if (isset($_POST['Product'])) {
             $product = new Product;
             $product->attributes = $_POST['Product'];
-            $product->save();
+            $created = $product->save();
         }
         include '../views/products/new.php';
     }

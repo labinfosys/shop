@@ -1,5 +1,6 @@
 <?php
-//var_dump($product);
+if ($created)
+    echo 'Товар добавлен. Добавляйте ещё:<br>';
 ?>
 <form action="" method="post">
 

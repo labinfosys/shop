@@ -13,3 +13,5 @@
     </tr>
 <?php endforeach; ?>
 </table>
+
+<a href="?r=product/new">Создать товар</a>

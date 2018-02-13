@@ -1,7 +1,8 @@
 <?php
 use \common\models\Product;
+use \core\Controller;
 
-class ProductController
+class ProductController extends Controller
 {
     public function actionIndex()
     {
@@ -15,7 +16,8 @@ class ProductController
 
         if (isset($_POST['Product'])) {
             $product->attributes = array_merge($product->attributes, $_POST['Product']);
-            $product->save();
+            if ($product->save())
+                $this->redirect('?r=product');          
         }
         include '../views/products/edit.php';
     }
@@ -26,7 +28,9 @@ class ProductController
         if (isset($_POST['Product'])) {
             $product = new Product;
             $product->attributes = $_POST['Product'];
-            $created = $product->save();
+            // $created = $product->save();
+            if ($product->save())
+                $this->redirect('?r=product');          
         }
         include '../views/products/new.php';
     }

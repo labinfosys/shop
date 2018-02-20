@@ -2,6 +2,8 @@
 use \common\helpers\Url;
 ?>
 
+<?php include 'categories.php' ?>
+
 <h1>Все товары</h1>
 <form action="" method="POST">
     <label>Название:

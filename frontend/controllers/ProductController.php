@@ -1,6 +1,7 @@
 <?php
 
 use \common\models\Product;
+use \common\models\Category;
 use \common\models\Brand;
 
 class ProductController
@@ -22,6 +23,7 @@ class ProductController
         else
             $products = Product::all();
 
+        $categories = Category::all();
         $brands = Brand::all();
         include '../views/products/index.php';
         // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';

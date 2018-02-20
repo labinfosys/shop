@@ -9,10 +9,11 @@ class Router
             $route = explode('/', preg_replace('/\//', '', $_SERVER['REQUEST_URI'], 1));
         else
             $route = explode('/', $_GET['r']);
-        
+
         if (!isset($route[0]) || $route[0] == '') {
             $route[0] = 'default';
         }
+
         $controllerName = ucfirst($route[0]) . 'Controller';
         if (!isset($route[1])) {
             $route[1] = 'index';
@@ -26,7 +27,15 @@ class Router
         }
 
         $controller = new $controllerName();
-        $params = $_GET;
+        
+        if (isset($_GET['r']))
+            $params = $_GET;
+        else {
+            $params = $route;
+            unset($params[0]);
+            unset($params[1]);
+        }
+
         unset($params['r']);
         call_user_func_array([$controller, $actionName], $params);
     }

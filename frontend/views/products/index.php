@@ -1,5 +1,8 @@
-<h1>Все товары</h1>
+<?php
+use \common\helpers\Url;
+?>
 
+<h1>Все товары</h1>
 <form action="" method="POST">
     <label>Название:
         <?php $value = isset($_POST['Product']['name']) ? $_POST['Product']['name'] : '' ?>
@@ -34,7 +37,7 @@
     <tr>
         <td><?= $prod->id ?></td>
         <td>
-            <a href="/?r=product/view&id=<?= $prod->id ?>"><?= $prod->name ?></a>
+            <a href="<?= Url::to('product/view', ['id' => $prod->id]) ?>"><?= $prod->name ?></a>
         </td>
         <td><?= $prod->brand ?></td>
         <td><?= $prod->price ?></td>

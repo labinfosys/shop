@@ -16,8 +16,10 @@ class ProductController
         include '../views/products/view.php';
     }
 
-    public function actionIndex()
+    public function actionIndex($catId = null)
     {
+        if (!is_null($catId))
+            $_POST['Product']['category_id'] = $catId;
         if (isset($_POST['Product']))
             $products = Product::all($_POST['Product']);
         else
@@ -28,6 +30,11 @@ class ProductController
         include '../views/products/index.php';
         // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';
     }
+
+    // public function actionCategory($id)
+    // {
+    //     $products = Product::
+    // }
 
     public function actionPagination()
     {

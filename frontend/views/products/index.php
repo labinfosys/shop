@@ -44,6 +44,7 @@ use \common\helpers\Url;
         <td><?= $prod->brand ?></td>
         <td><?= $prod->price ?></td>
         <td><?= $prod->availability ?></td>
+        <td><?= $prod->cat_name ?></td>
     </tr>
 <?php endforeach; ?>
 </table>

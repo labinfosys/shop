@@ -24,13 +24,13 @@ class Product extends Model
 
     public static function all($filter = [])
     {
-        $sql = 'select * from product where 1=1 ';
+        $sql = 'select product.*, category.name cat_name from product, category where product.category_id = category.id ';
         if (count($filter) > 0) {
             foreach($filter as $key => $value) {
                 if (is_array($value))
-                    $sql .= ' and ' . $key . ' in (\'' . implode('\', \'', $value) . '\')';
+                    $sql .= ' and product.' . $key . ' in (\'' . implode('\', \'', $value) . '\')';
                 else
-                    $sql .= ' and ' . $key . ' like \'%' . $value . '%\'';
+                    $sql .= ' and product.' . $key . ' like \'%' . $value . '%\'';
             }
         }
         $result = [];

@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/style.css">
-
 <ul>
 <?php foreach($products as $prod) : ?>
     <li><a href="/?r=product/view&id=<?= $prod->id ?>"><?= $prod->name ?></a></li>

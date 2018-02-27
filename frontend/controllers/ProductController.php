@@ -1,10 +1,11 @@
 <?php
 
-use \common\models\Product;
-use \common\models\Category;
-use \common\models\Brand;
+use common\models\Product;
+use common\models\Category;
+use common\models\Brand;
+use core\Controller;
 
-class ProductController
+class ProductController extends Controller
 {
     public function actionView($id)
     {
@@ -24,11 +25,13 @@ class ProductController
             $products = Product::all($_POST['Product']);
         else
             $products = Product::all();
-
-        $categories = Category::all();
-        $brands = Brand::all();
-        include '../views/products/index.php';
-        // include BASE_PATH . DIRECTORY_SEPARATOR . 'views/products/index.php';
+        $this->title = 'Все товары';
+        $this->render('products/index', [
+            'products'   => $products,
+            'categories' => Category::all(),
+            'brands'     => Brand::all()
+        ]);
+        // include '../views/products/index.php';
     }
 
     // public function actionCategory($id)

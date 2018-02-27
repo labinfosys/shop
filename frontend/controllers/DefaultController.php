@@ -1,9 +1,10 @@
 <?php
+use core\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
     public function actionIndex()
     {
-        echo 'Главная страница';
+        $this->render('default/index');
     }
 }
